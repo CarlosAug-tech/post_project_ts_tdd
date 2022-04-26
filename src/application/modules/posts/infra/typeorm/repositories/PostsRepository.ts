@@ -37,6 +37,27 @@ class PostsRepository implements IPostsRepository {
     const post = await this.repository.findOne(id);
     return post;
   }
+
+  async listAll(): Promise<IPost[]> {
+    const posts = await this.repository
+      .createQueryBuilder('post')
+      .leftJoinAndSelect('post.category', 'category')
+      .leftJoinAndSelect('post.user', 'user')
+      .leftJoinAndSelect('post.comments', 'comments')
+      .select(['post.id', 'post.title', 'post.description'])
+      .addSelect([
+        'category.id',
+        'category.name',
+        'user.id',
+        'user.name',
+        'comments.id',
+        'comments.content',
+        'comments.user_id',
+      ])
+      .getMany();
+
+    return posts;
+  }
 }
 
 export { PostsRepository };

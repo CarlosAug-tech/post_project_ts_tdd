@@ -33,6 +33,10 @@ class PostsRepositoryInMemory implements IPostsRepository {
   async findById(id: string): Promise<IPost> {
     return this.post.find(post => post.id === id);
   }
+
+  async listAll(): Promise<IPost[]> {
+    return this.post;
+  }
 }
 
 export { PostsRepositoryInMemory };

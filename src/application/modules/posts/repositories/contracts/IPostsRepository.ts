@@ -12,6 +12,7 @@ interface IPostsRepository {
     category_id,
   }: ICreatePostRequestDTO): Promise<ICreatePostResponseDTO>;
   findById(id: string): Promise<IPost>;
+  listAll(): Promise<IPost[]>;
 }
 
 export { IPostsRepository };

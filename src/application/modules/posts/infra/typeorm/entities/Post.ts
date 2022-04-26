@@ -6,10 +6,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryColumn,
 } from 'typeorm';
 import { v4 } from 'uuid';
 import { Category } from './Category';
+import { Comment } from './Comment';
 
 @Entity('posts')
 class Post implements IPost {
@@ -35,6 +37,9 @@ class Post implements IPost {
 
   @Column()
   category_id: string;
+
+  @OneToMany(() => Comment, comment => comment.post)
+  comments: Comment[];
 
   @CreateDateColumn()
   created_at: Date;
