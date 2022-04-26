@@ -1,4 +1,5 @@
 import { AppError } from '@infra/shared/errors/AppError';
+import { inject, injectable } from 'tsyringe';
 import {
   ICreateCommentRequestDTO,
   ICreateCommentResponseDTO,
@@ -6,9 +7,12 @@ import {
 import { ICommentsRepository } from '../../repositories/contracts/ICommentsRepository';
 import { IPostsRepository } from '../../repositories/contracts/IPostsRepository';
 
+@injectable()
 class CreateCommentUseCase {
   constructor(
+    @inject('CommentsRepository')
     private commentsRepository: ICommentsRepository,
+    @inject('PostsRepository')
     private postsRepository: IPostsRepository,
   ) {}
 

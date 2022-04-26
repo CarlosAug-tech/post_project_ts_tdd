@@ -9,6 +9,8 @@ import { IPostsRepository } from '@application/modules/posts/repositories/contra
 import { PostsRepository } from '@application/modules/posts/infra/typeorm/repositories/PostsRepository';
 
 import './providers';
+import { CommentsRepository } from '@application/modules/posts/infra/typeorm/repositories/CommentsRepository';
+import { ICommentsRepository } from '@application/modules/posts/repositories/contracts/ICommentsRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -21,4 +23,8 @@ container.registerSingleton<ICategoriesRepository>(
 container.registerSingleton<IPostsRepository>(
   'PostsRepository',
   PostsRepository,
+);
+container.registerSingleton<ICommentsRepository>(
+  'CommentsRepository',
+  CommentsRepository,
 );

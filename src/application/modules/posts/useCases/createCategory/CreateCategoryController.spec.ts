@@ -26,12 +26,6 @@ describe('Create Category Controller', () => {
     `,
     );
 
-    // const response = await request(app).post('/sessions').send({
-    //   email: 'admin@posts.com.br',
-    //   password: 'admin',
-    // });
-
-    // token = response.body.token;
     token = sign({}, auth.jwt_token_secret, {
       subject: id,
     });
