@@ -1,3 +1,4 @@
+import { IComment } from '@domain/entities/contracts/IComment';
 import {
   ICreateCommentRequestDTO,
   ICreateCommentResponseDTO,
@@ -25,6 +26,10 @@ class CommentsRepositoryInMemory implements ICommentsRepository {
     this.comment.push(comment);
 
     return comment;
+  }
+
+  async findAllCommentsByPost(post_id: string): Promise<IComment[]> {
+    return this.comment.filter(comment => comment.post_id === post_id);
   }
 }
 
