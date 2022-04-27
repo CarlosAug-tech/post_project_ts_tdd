@@ -43,17 +43,10 @@ class PostsRepository implements IPostsRepository {
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')
       .leftJoinAndSelect('post.user', 'user')
-      .leftJoinAndSelect('post.comments', 'comments')
       .select(['post.id', 'post.title', 'post.description'])
-      .addSelect([
-        'category.id',
-        'category.name',
-        'user.id',
-        'user.name',
-        'comments.id',
-        'comments.content',
-        'comments.user_id',
-      ])
+      .addSelect(['category.id', 'category.name', 'user.id', 'user.name'])
+      .orderBy('post.created_at', 'DESC')
+      .limit(10)
       .getMany();
 
     return posts;
