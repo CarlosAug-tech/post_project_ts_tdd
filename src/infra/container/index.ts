@@ -7,10 +7,12 @@ import { ICategoriesRepository } from '@application/modules/posts/repositories/c
 import { CategoriesRepository } from '@application/modules/posts/infra/typeorm/repositories/CategoriesRepository';
 import { IPostsRepository } from '@application/modules/posts/repositories/contracts/IPostsRepository';
 import { PostsRepository } from '@application/modules/posts/infra/typeorm/repositories/PostsRepository';
-
-import './providers';
 import { CommentsRepository } from '@application/modules/posts/infra/typeorm/repositories/CommentsRepository';
 import { ICommentsRepository } from '@application/modules/posts/repositories/contracts/ICommentsRepository';
+import { IFilesRepository } from '@application/modules/files/repositories/contracts/IFilesRepository';
+import { FilesRepository } from '@application/modules/files/infra/typeorm/repositories/FilesRepository';
+
+import './providers';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -27,4 +29,8 @@ container.registerSingleton<IPostsRepository>(
 container.registerSingleton<ICommentsRepository>(
   'CommentsRepository',
   CommentsRepository,
+);
+container.registerSingleton<IFilesRepository>(
+  'FilesRepository',
+  FilesRepository,
 );
